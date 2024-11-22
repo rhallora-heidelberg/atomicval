@@ -26,7 +26,7 @@ type Value[T comparable] struct {
 	// cause copy attempts to be caught by `go vet`
 	_ [0]sync.Mutex
 
-	// prevent unruly type conversions
+	// prevent unruly type conversions (see [atomic.Pointer])
 	_ [0]*T
 
 	v unsafe.Pointer
