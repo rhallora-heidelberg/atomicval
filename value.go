@@ -79,7 +79,7 @@ func (v *Value[T]) CompareAndSwap(old, new T) (swapped bool) {
 		return false
 	}
 
-	// [atomic.CompareAndSwapPointer] ensures that changes haven't occured since the
+	// [atomic.CompareAndSwapPointer] ensures that changes haven't occurred since the
 	// [atomic.LoadPointer] call above
 	return atomic.CompareAndSwapPointer(&v.v, dp, unsafe.Pointer(&[1]T{new}))
 }
