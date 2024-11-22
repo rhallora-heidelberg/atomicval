@@ -1,5 +1,6 @@
 # atomicval
 
+[![Go](https://github.com/rhallora-heidelberg/atomicval/actions/workflows/go.yml/badge.svg)](https://github.com/rhallora-heidelberg/atomicval/actions/workflows/go.yml)
 [![GoDoc](https://pkg.go.dev/badge/github.com/rhallora-heidelberg/atomicval)](https://pkg.go.dev/github.com/rhallora-heidelberg/atomicval)
 [![Go Report Card](https://goreportcard.com/badge/github.com/rhallora-heidelberg/atomicval)](https://goreportcard.com/report/github.com/rhallora-heidelberg/atomicval)
 
