@@ -10,7 +10,6 @@
 package atomicval
 
 import (
-	"sync"
 	"sync/atomic"
 	"unsafe"
 )
@@ -23,8 +22,7 @@ import (
 //
 // Must not be copied after first use.
 type Value[T comparable] struct {
-	// cause copy attempts to be caught by `go vet`
-	_ [0]sync.Mutex
+	_ noCopy
 
 	// prevent unruly type conversions (see [atomic.Pointer])
 	_ [0]*T
@@ -83,3 +81,12 @@ func (v *Value[T]) CompareAndSwap(old, new T) (swapped bool) {
 	// [atomic.LoadPointer] call above
 	return atomic.CompareAndSwapPointer(&v.v, dp, unsafe.Pointer(&[1]T{new}))
 }
+
+// noCopy may be added to structs which must not be copied
+// after the first use.
+//
+// See: https://golang.org/issues/8005#issuecomment-190753527
+type noCopy struct{}
+
+func (*noCopy) Lock()   {}
+func (*noCopy) Unlock() {}
